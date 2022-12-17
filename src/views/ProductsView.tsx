@@ -3,10 +3,11 @@ import FooterSection from '../sections/FooterSection'
 import MainMenuSection from '../sections/MainMenuSection'
 import ProductGridSection from '../sections/ProductGridSection'
 import BreadcrumbSection from '../sections/BreadcrumbSection'
-import { useProductContext } from '../contexts/ProductContexts'
+import { useProductContext, IProductContextType } from '../contexts/ProductContexts'
 
-const ProductsView = () => {
-  const {products, getProducts} = useProductContext()
+
+const ProductsView: React.FC = () => {
+  const {products, getProducts} = useProductContext() as IProductContextType
   
   useEffect(() => {
     getProducts()

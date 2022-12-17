@@ -1,7 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const MenuIcon = ({link, icon, quantity, hideOnMobile}) => {
+
+export interface IMenuIconType{
+  link: string
+  icon: string
+  quantity: string
+  hideOnMobile: boolean
+}
+
+const MenuIcon: React.FC<IMenuIconType> = ({link, icon, quantity, hideOnMobile}) => {
   return (
     // <NavLink className="menu-icon" to={link} end>
    

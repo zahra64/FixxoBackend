@@ -1,22 +1,42 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { Product } from '../models/productModel';
+
+interface ProductCardType {
+    item: Product
+}
 
 
- const productCard = ({item}) => {
+ const productCard: React.FC<ProductCardType> = ({item}) => {
 
-    const addToWishList = (e) => {
+    const addToWishList = (e:any) => {
         console.log("added to wish list")
     }
+    
 
-
-    const addToCompare = (e) => {
+    const addToCompare = (e: any) => {
         console.log("added to compare")
     }
 
 
-    const addToCart = (e) => {
+    const addToCart = (e:any) => {
         console.log("added to shopping cart")
     }
+
+
+    // const addToWishList = (e) => {
+    //     console.log("added to wish list")
+    // }
+
+
+    // const addToCompare = (e) => {
+    //     console.log("added to compare")
+    // }
+
+
+    // const addToCart = (e) => {
+    //     console.log("added to shopping cart")
+    // }
 
     return (
         <div className="col">
