@@ -4,7 +4,7 @@ import customer from '../assets/images/customer-service.svg';
 import delivery from '../assets/images/delivery-truck.svg';
 import deliveryitem from '../assets/images/delivery-truck.svg';
 
-const CustomerSupportSection = () => {
+const CustomerSupportSection: React.FC = () => {
   return (
     <section className="info">
         <div className="container">

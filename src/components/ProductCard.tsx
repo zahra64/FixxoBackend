@@ -23,21 +23,6 @@ interface ProductCardType {
         console.log("added to shopping cart")
     }
 
-
-    // const addToWishList = (e) => {
-    //     console.log("added to wish list")
-    // }
-
-
-    // const addToCompare = (e) => {
-    //     console.log("added to compare")
-    // }
-
-
-    // const addToCart = (e) => {
-    //     console.log("added to shopping cart")
-    // }
-
     return (
         <div className="col">
             <div className="card">
@@ -52,7 +37,7 @@ interface ProductCardType {
                         <button onClick={addToCart} className="menu-link"><i className="fa-regular fa-bag-shopping"></i></button>
                         {/* <a href="#"><i className="fa-regular fa-repeat"></i></a> */}
                     </div>
-                    <NavLink to={`/products/${item.name.toLowerCase().replace(/ /gi, "-")}`}  className="btn-theme btn-card-theme d-xl-none" >
+                    <NavLink to={`/products/${item.articleNumber}`}  className="btn-theme btn-card-theme d-xl-none" >
                         <span className="corner-left"></span>
                         QUICK VIEW
                         <span className="corner-right"></span>

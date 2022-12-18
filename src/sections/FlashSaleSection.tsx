@@ -1,10 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
- import { useProductContext } from '../contexts/ProductContexts'
+ import {Product} from '../models/productModel'
 
-const FlashSaleSection = ({items = []}) => {
-    // const products = useProductContext()
+ interface IFlashSaleSectionType {
+    items: Product[]
+      
+  }
+const FlashSaleSection: React.FC<IFlashSaleSectionType>= ({items = []}) => {
+
 
   return (
    

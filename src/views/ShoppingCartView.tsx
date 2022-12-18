@@ -2,7 +2,7 @@ import React from 'react'
 import FooterSection from '../sections/FooterSection'
 import MainMenuSection from '../sections/MainMenuSection'
 
-const WishListView = () => {
+const ShoppingCartView: React.FC = () => {
   return (
     <>
     <MainMenuSection />
@@ -10,5 +10,4 @@ const WishListView = () => {
     </>
   )
 }
-
-export default WishListView
+export default ShoppingCartView

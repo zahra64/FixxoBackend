@@ -1,6 +1,10 @@
 import React from 'react'
 
-const ExternaLinkIcon = ({link, icon}) => {
+interface ExternaLinkIconType {
+  link: string
+  icon: string
+}
+const ExternaLinkIcon: React.FC<ExternaLinkIconType> = ({link, icon}) => {
   return (
     <a href={link} target="_blank">
         <i className={icon}></i>
