@@ -14,7 +14,8 @@ export interface IProductContextType {
 	featuredProducts: Product[]
 	flashSaleProducts: Product[]
 	getProduct: (articleNumber?: string) => void
-	getProducts: (take?: number) =>void
+	// getProducts: (take?: number) =>void
+	getProducts: () =>void
 	getFeaturedProducts: (take?: number) =>void
 	getFlashSaleProducts: (take?: number) =>void
 } 
@@ -22,9 +23,10 @@ export const ProductContext = createContext<IProductContextType | null>(null)
 export const useProductContext = () => { return useContext (ProductContext )}
 
     const ProductProvider: React.FC<IProductProviderType> = ({children}) => {
-	const baseUrl: string ='https://win22-webapi.azurewebsites.net/api/products'
+	// const baseUrl: string ='https://win22-webapi.azurewebsites.net/api/products'
+	const baseUrl: string ='https://localhost:5000/api/products'
 
-	const product_object: Product = { articleNumber: '', name:'',category:'',price:0, imageName:''}
+	const product_object: Product = { tag:'', articleNumber: '', name:'', description:'', category:'', price:0, imageName:''}
 
 	const [product, setProduct] = useState<Product> (product_object)
 	const [products, setProducts] = useState<Product[]> ([])
@@ -33,28 +35,35 @@ export const useProductContext = () => { return useContext (ProductContext )}
 
 	const getProduct = async (articleNumber?: string ) => {
 		if (articleNumber !== undefined) {
-			const res = await fetch(baseUrl + `/${articleNumber}`)
+			// const res = await fetch(baseUrl + `/${articleNumber}`)
+			const res = await fetch(`${baseUrl}/details/${articleNumber}`)
 			setProduct (await res.json ())
 		}
 		
 	}
 
+	// const getProducts = async (take: number = 0) => {
+	// 	let url = baseUrl
 
-	const getProducts = async (take: number = 0) => {
-		let url = baseUrl
+	// 	if (take !== 0)
+	// 	url = baseUrl + `?take=${take}`
 
-		if (take !== 0)
-		url = baseUrl + `?take=${take}`
+	// 	const res = await fetch(url)
+	// 	setProducts(await res.json())
+	// }
 
-		const res = await fetch(url)
+	const getProducts = async () => {
+
+		const res = await fetch(baseUrl)
 		setProducts(await res.json())
 	}
 
 	const getFeaturedProducts = async (take: number = 0) => {
-		let url = baseUrl + `?tag=featured`
-	
+		// let url = baseUrl + `?tag=featured`
+		let url = `${baseUrl}/featured`
 		if (take !== 0)
-		url += baseUrl + `&take=${take}`
+		// url += baseUrl + `&take=${take}`
+		url += `/${take}`
 
 		const res = await fetch(url)
 		setFeaturedProducts(await res.json())
