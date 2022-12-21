@@ -24,7 +24,7 @@ export const useProductContext = () => { return useContext (ProductContext )}
 
     const ProductProvider: React.FC<IProductProviderType> = ({children}) => {
 	// const baseUrl: string ='https://win22-webapi.azurewebsites.net/api/products'
-	const baseUrl: string ='https://localhost:5000/api/products'
+	const baseUrl: string ='http://localhost:5000/api/products'
 
 	const product_object: Product = { tag:'', articleNumber: '', name:'', description:'', category:'', price:0, imageName:''}
 
@@ -70,10 +70,11 @@ export const useProductContext = () => { return useContext (ProductContext )}
 	}
 
 	const getFlashSaleProducts = async (take: number = 0) => {
-		let url = baseUrl + `?tag=featured`
-	
+		// let url = baseUrl + `?tag=flashSale`
+		let url = `${baseUrl}/flashSale`
 		if (take !== 0)
-		url += baseUrl + `&take=${take}`
+		// url += baseUrl + `&take=${take}`
+		url += `/${take}`
 
 		const res = await fetch(url)
 		setFlashSaleProducts (await res.json ())
