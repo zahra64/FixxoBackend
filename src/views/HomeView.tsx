@@ -6,6 +6,7 @@ import BannersSection from '../sections/BannersSection'
 import ProductGridSection from '../sections/ProductGridSection'
 import { useProductContext } from '../contexts/ProductContexts'
 import FlashSaleSection from '../sections/FlashSaleSection'
+import FlashSaleLeftSection from '../sections/FlashSaleLeftSection'
 import CustomerSupportSection from '../sections/CustomerSupportSection'
 import { IProductContextType } from '../contexts/ProductContexts'
 // import { ProductContext } from '../contexts/contexts'
@@ -17,6 +18,8 @@ import { IProductContextType } from '../contexts/ProductContexts'
 
     const {featuredProducts, getFeaturedProducts} = useProductContext() as IProductContextType
     const {flashSaleProducts,  getFlashSaleProducts} = useProductContext() as IProductContextType
+    const {flashSaleLeftProducts,  getFlashSaleLeftProducts} = useProductContext() as IProductContextType
+
     document.title = 'Fixxo.'
 
   useEffect(() => {
@@ -25,6 +28,10 @@ import { IProductContextType } from '../contexts/ProductContexts'
 
   useEffect(() => {
     getFlashSaleProducts(4)
+  }, [])
+
+  useEffect(() => {
+    getFlashSaleLeftProducts(4)
   }, [])
   
   return (
@@ -37,6 +44,7 @@ import { IProductContextType } from '../contexts/ProductContexts'
       {/* <ProductGridSection title="Featured Products" items={productContext.featuredProducts}/> */}
       <BannersSection />
       <FlashSaleSection  items={flashSaleProducts}/>
+      <FlashSaleLeftSection  items={flashSaleLeftProducts}/>
       <CustomerSupportSection />
       <FooterSection />
     </>

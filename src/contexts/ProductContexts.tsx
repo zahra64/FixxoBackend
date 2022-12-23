@@ -13,11 +13,14 @@ export interface IProductContextType {
 	products: Product[]
 	featuredProducts: Product[]
 	flashSaleProducts: Product[]
+	flashSaleLeftProducts: Product[]
 	getProduct: (articleNumber?: string) => void
 	// getProducts: (take?: number) =>void
 	getProducts: () =>void
 	getFeaturedProducts: (take?: number) =>void
 	getFlashSaleProducts: (take?: number) =>void
+	getFlashSaleLeftProducts: (take?: number) =>void
+
 } 
 export const ProductContext = createContext<IProductContextType | null>(null)
 export const useProductContext = () => { return useContext (ProductContext )}
@@ -32,6 +35,7 @@ export const useProductContext = () => { return useContext (ProductContext )}
 	const [products, setProducts] = useState<Product[]> ([])
 	const [featuredProducts, setFeaturedProducts] = useState<Product[]> ([])
 	const [flashSaleProducts, setFlashSaleProducts] = useState<Product[]> ([])
+	const [flashSaleLeftProducts, setFlashSaleLeftProducts] = useState<Product[]> ([])
 
 	const getProduct = async (articleNumber?: string ) => {
 		if (articleNumber !== undefined) {
@@ -80,8 +84,16 @@ export const useProductContext = () => { return useContext (ProductContext )}
 		setFlashSaleProducts (await res.json ())
 	}
 	
+	const getFlashSaleLeftProducts = async (take: number = 0) => {
+		let url = `${baseUrl}/flashSaleLeft`
+		if (take !== 0)
+		url += `/${take}`
+
+		const res = await fetch(url)
+		setFlashSaleLeftProducts (await res.json ())
+	}
 	
-	return <ProductContext.Provider value={{product, products, featuredProducts,flashSaleProducts, getProducts, getFeaturedProducts, getFlashSaleProducts, getProduct}}>
+	return <ProductContext.Provider value={{product, products, featuredProducts,flashSaleProducts,flashSaleLeftProducts, getProducts, getFeaturedProducts, getFlashSaleProducts,getFlashSaleLeftProducts, getProduct}}>
 		{children}
 		
 	</ProductContext.Provider>
